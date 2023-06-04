@@ -8,10 +8,10 @@ estado_inicial([
     ]).
 estado_final([
     robo_na_posicao(0),
-    bloco_na_posicao(c, 1),
-    bloco_na_posicao(a, 2),
-    bloco_na_posicao(b, 3),
-    posicao_livre(0),
+    bloco_na_posicao(c, 0),
+    bloco_na_posicao(a, 1),
+    bloco_na_posicao(b, 2),
+    posicao_livre(3),
     braco_livre
     ]).
 
@@ -31,10 +31,10 @@ accao(mover_esquerda(C1, C),
 
 accao(agarrar_bloco(B),
     [bloco_na_posicao(B, C), robo_na_posicao(C), braco_livre],
-    [bloco_na_mao(B),posicao_livre(C)],
+    [bloco_na_mao(B),posicao_livre(B)],
     [bloco_na_posicao(B, C), braco_livre]):- member(B, [a, b, c]).
 
 accao(largar_bloco(B),
-    [bloco_na_mao(B),robo_na_posicao(C),posicao_livre(C)],
+    [bloco_na_mao(B),robo_na_posicao(C)],
     [bloco_na_posicao(B, C), braco_livre],
     [bloco_na_mao(B), posicao_livre(C)]):- member(B, [a, b, c]).
